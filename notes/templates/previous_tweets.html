@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block cont %}
+    <div class="container" align="center"><h5 class="display-4">My Thoughts</h5></div>
+    {% if not user.notes %}
+        <div class="container" align="center"><h6 class="display-5">You have no thoughts</h6></div>
+    {% endif %}
+    <ul class="list-group">
+        {% for note in user.notes[::-1] %}
+        <li class="list-group-item">{{ note.content }}
+            <button type="button" class="close" onClick="deleteTweet({{ note.id }})"><span aria-hidden="true">&times;</span> </button>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
